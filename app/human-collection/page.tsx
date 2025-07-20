@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { X, Heart, MessageCircle, Share, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
@@ -95,7 +95,7 @@ const HumanCollectionPage = () => {
     }
   };
 
-  const photoVariants = {
+  const photoVariants: Variants = {
     hidden: { 
       opacity: 0, 
       y: 20,
