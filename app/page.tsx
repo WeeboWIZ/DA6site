@@ -119,7 +119,7 @@ const HomePage = () => {
 
       {/* Header */}
       <motion.header 
-        className="absolute top-0 left-0 right-0 z-40 p-8"
+        className="absolute top-0 left-0 right-0 z-40 p-4 md:p-8"
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.5, duration: 0.8 }}
@@ -131,10 +131,10 @@ const HomePage = () => {
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.7, duration: 0.8 }}
           >
-            <h1 className="text-6xl md:text-8xl font-serif text-white tracking-wider">
+            <h1 className="text-4xl md:text-6xl lg:text-8xl font-serif text-white tracking-wider">
               DA6
             </h1>
-            <p className="text-lg md:text-xl font-mono text-white/70 tracking-[0.3em] uppercase mt-2">
+            <p className="text-sm md:text-lg lg:text-xl font-mono text-white/70 tracking-[0.2em] md:tracking-[0.3em] uppercase mt-1 md:mt-2">
               Visual Storyteller
             </p>
           </motion.div>
@@ -158,9 +158,9 @@ const HomePage = () => {
       </motion.header>
 
       {/* Main Content */}
-      <div className="absolute inset-0 flex items-center justify-center z-30">
-        <div className="max-w-7xl mx-auto px-8 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 h-full items-center">
+      <div className="absolute inset-0 flex items-center justify-center z-30 pt-24 md:pt-32">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 h-full items-center">
             
             {/* Left Side - Current Module Info */}
             <div className="lg:col-span-1 text-white space-y-8">
@@ -172,17 +172,17 @@ const HomePage = () => {
                   exit={{ x: -100, opacity: 0 }}
                   transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
                 >
-                  <div className="space-y-6">
+                  <div className="space-y-4 md:space-y-6">
                     <div>
-                      <h2 className="text-4xl md:text-5xl font-serif mb-3 leading-tight">
+                      <h2 className="text-2xl md:text-4xl lg:text-5xl font-serif mb-2 md:mb-3 leading-tight">
                         {currentModuleData.title}
                       </h2>
-                      <p className="text-xl font-mono text-white/80 tracking-wider">
+                      <p className="text-lg md:text-xl font-mono text-white/80 tracking-wider">
                         {currentModuleData.subtitle}
                       </p>
                     </div>
                     
-                    <p className="text-lg font-mono text-white/70 leading-relaxed max-w-md">
+                    <p className="text-base md:text-lg font-mono text-white/70 leading-relaxed max-w-md">
                       {currentModuleData.description}
                     </p>
                     
@@ -215,40 +215,42 @@ const HomePage = () => {
                   transition={{ delay: 0.3 + index * 0.1, duration: 0.8 }}
                   whileHover={{ scale: index === currentModule ? 1.08 : 1 }}
                 >
-                  <div className="relative overflow-hidden rounded-2xl h-32 md:h-40">
-                    <img
-                      src={module.image}
-                      alt={module.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                    <div className={`absolute inset-0 bg-gradient-to-r ${module.color} ${
-                      index === currentModule ? 'opacity-60' : 'opacity-80'
-                    } group-hover:opacity-50 transition-opacity duration-300`} />
-                    
-                    <div className="absolute inset-0 flex items-center justify-between p-6">
-                      <div>
-                        <h3 className="text-2xl md:text-3xl font-serif text-white mb-1">
-                          {module.title}
-                        </h3>
-                        <p className="text-sm font-mono text-white/80 tracking-wider">
-                          {module.subtitle}
-                        </p>
-                      </div>
-                      
-                      <motion.div
-                        className={`w-3 h-3 rounded-full ${
-                          index === currentModule ? 'bg-white' : 'bg-white/40'
-                        }`}
-                        animate={{
-                          scale: index === currentModule ? [1, 1.2, 1] : 1,
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: index === currentModule ? Infinity : 0,
-                        }}
+                  <Link href={module.href} className="block">
+                    <div className="relative overflow-hidden rounded-2xl h-24 md:h-32 lg:h-40">
+                      <img
+                        src={module.image}
+                        alt={module.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                       />
+                      <div className={`absolute inset-0 bg-gradient-to-r ${module.color} ${
+                        index === currentModule ? 'opacity-60' : 'opacity-80'
+                      } group-hover:opacity-50 transition-opacity duration-300`} />
+                      
+                      <div className="absolute inset-0 flex items-center justify-between p-3 md:p-4 lg:p-6">
+                        <div>
+                          <h3 className="text-lg md:text-2xl lg:text-3xl font-serif text-white mb-1">
+                            {module.title}
+                          </h3>
+                          <p className="text-xs md:text-sm font-mono text-white/80 tracking-wider">
+                            {module.subtitle}
+                          </p>
+                        </div>
+                      
+                        <motion.div
+                          className={`w-2 md:w-3 h-2 md:h-3 rounded-full ${
+                            index === currentModule ? 'bg-white' : 'bg-white/40'
+                          }`}
+                          animate={{
+                            scale: index === currentModule ? [1, 1.2, 1] : 1,
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: index === currentModule ? Infinity : 0,
+                          }}
+                        />
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 </motion.div>
               ))}
             </div>
@@ -256,49 +258,47 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* Progress Indicator */}
+      {/* Bottom Section */}
       <motion.div 
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-40"
+        className="absolute bottom-0 left-0 right-0 z-40 p-4 md:p-8"
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 1, duration: 0.8 }}
       >
-        <div className="flex items-center gap-3">
-          {modules.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => handleModuleChange(index)}
-              className="relative"
-            >
-              <div className={`w-12 h-1 rounded-full transition-all duration-500 ${
-                index === currentModule ? 'bg-white' : 'bg-white/30'
-              }`} />
-              {index === currentModule && autoPlay && (
-                <motion.div
-                  className="absolute top-0 left-0 h-1 bg-white rounded-full"
-                  initial={{ width: 0 }}
-                  animate={{ width: '100%' }}
-                  transition={{ duration: 5, ease: "linear" }}
-                />
-              )}
-            </button>
-          ))}
-        </div>
-      </motion.div>
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+          {/* Progress Indicator */}
+          <div className="flex items-center gap-2 md:gap-3 order-2 md:order-1">
+            {modules.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => handleModuleChange(index)}
+                className="relative"
+              >
+                <div className={`w-8 md:w-12 h-1 rounded-full transition-all duration-500 ${
+                  index === currentModule ? 'bg-white' : 'bg-white/30'
+                }`} />
+                {index === currentModule && autoPlay && (
+                  <motion.div
+                    className="absolute top-0 left-0 h-1 bg-white rounded-full"
+                    initial={{ width: 0 }}
+                    animate={{ width: '100%' }}
+                    transition={{ duration: 5, ease: "linear" }}
+                  />
+                )}
+              </button>
+            ))}
+          </div>
 
-      {/* Bottom Info */}
-      <motion.div
-        className="absolute bottom-8 right-8 z-40 text-right"
-        initial={{ y: 100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.8 }}
-      >
-        <p className="text-sm font-mono text-white/60 tracking-widest uppercase">
-          Post-Internet Aesthetic
-        </p>
-        <p className="text-sm font-mono text-white/60 tracking-widest uppercase">
-          × Visual Narrative
-        </p>
+          {/* Bottom Info - Moved to bottom */}
+          <div className="text-center md:text-right order-1 md:order-2">
+            <p className="text-xs md:text-sm font-mono text-white/60 tracking-wider md:tracking-widest uppercase">
+              Post-Internet Aesthetic
+            </p>
+            <p className="text-xs md:text-sm font-mono text-white/60 tracking-wider md:tracking-widest uppercase">
+              × Visual Narrative
+            </p>
+          </div>
+        </div>
       </motion.div>
     </div>
   );
